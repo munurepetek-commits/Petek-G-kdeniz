@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>Egem 🤍</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body{
       margin:0;
@@ -13,7 +13,11 @@
       align-items:center;
       background:#fff0f5;
       font-family: Arial, Helvetica, sans-serif;
+      padding:24px;
+      box-sizing:border-box;
     }
+    *{ box-sizing:border-box; }
+
     .box{
       background:white;
       padding:20px;
@@ -27,6 +31,7 @@
       width:100%;
       border-radius:14px;
       margin:10px 0;
+      display:block;
     }
     button{
       padding:12px 16px;
@@ -35,21 +40,40 @@
       font-size:16px;
       font-weight:bold;
       cursor:pointer;
+      background:#e9eefb;
+    }
+
+    /* 🔥 Mesajın düzgün görünmesi için */
+    #mesaj{
+      display:none;
+      margin-top:16px;
+      font-size:22px;
+      font-weight:800;
+      line-height:1.2;
+      word-break:break-word;
+      white-space:normal;
+      animation: fadeIn .35s ease forwards;
+    }
+    @keyframes fadeIn{
+      from{ opacity:0; transform: translateY(6px); }
+      to{ opacity:1; transform: translateY(0); }
     }
   </style>
 </head>
+
 <body>
   <div class="box">
     <h1>Egem 🤍</h1>
+
     <img src="photo.jpg" alt="Petek">
+
     <p>Seni yerim.</p>
-    <p><b>Seni, senin Beşiktaş'ı sevdiğinden daha çok seviyorum</b></p>
+    <p><b>seni yerim😙 </b></p>
 
-    <button onclick="playMusic()">Müziği Aç</button>
+    <button id="btn" onclick="playMusic()">Müziği Aç</button>
 
-    <p id="mesaj" style="display:none; font-size:22px; font-weight:bold; margin-top:15px;">
-      seni yerim
-    </p>
+    <!-- ✅ Mesaj MUTLAKA box'ın içinde olmalı -->
+    <p id="mesaj">Seni, senin beşiktaşı sevdiğinden daha çok seviyorum </p>
 
     <audio id="music" src="song.mp3"></audio>
   </div>
@@ -58,10 +82,15 @@
     let ilkKez = true;
 
     function playMusic(){
-      document.getElementById("music").play();
+      const music = document.getElementById("music");
+      const mesaj = document.getElementById("mesaj");
+      const btn = document.getElementById("btn");
+
+      music.play();
 
       if (ilkKez) {
-        document.getElementById("mesaj").style.display = "block";
+        mesaj.style.display = "block";
+        btn.textContent = "Müzik Açıldı ✅";
         ilkKez = false;
       }
     }
