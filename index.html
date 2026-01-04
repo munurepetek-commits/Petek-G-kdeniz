@@ -48,11 +48,18 @@
     <button onclick="playMusic()">Müziği Aç</button>
     <audio id="music" src="song.mp3"></audio>
   </div>
+<p id="mesaj" style="display:none; font-size:22px; font-weight:bold; margin-top:15px;">
+ seni yerim 
+</p>
+<script>
+  let ilkKez = true;
 
-  <script>
-    function playMusic(){
-      document.getElementById("music").play();
+  function playMusic(){
+    document.getElementById("music").play();
+
+    if (ilkKez) {
+      document.getElementById("mesaj").style.display = "block";
+      ilkKez = false;
     }
-  </script>
-</body>
-</html>
+  }
+</script>
