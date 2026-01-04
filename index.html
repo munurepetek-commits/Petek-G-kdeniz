@@ -26,6 +26,8 @@
       text-align:center;
       max-width:400px;
       width:100%;
+      position:relative;
+      z-index:2;
     }
     img{
       width:100%;
@@ -43,20 +45,37 @@
       background:#e9eefb;
     }
 
-    /* 🔥 Mesajın düzgün görünmesi için */
+    /* 🔥 Mesaj */
     #mesaj{
       display:none;
       margin-top:16px;
       font-size:22px;
       font-weight:800;
       line-height:1.2;
-      word-break:break-word;
-      white-space:normal;
       animation: fadeIn .35s ease forwards;
     }
     @keyframes fadeIn{
       from{ opacity:0; transform: translateY(6px); }
       to{ opacity:1; transform: translateY(0); }
+    }
+
+    /* ❤️ KALP ANİMASYONU */
+    #hearts{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:1;
+    }
+    .heart{
+      position:absolute;
+      bottom:-20px;
+      font-size:24px;
+      animation: floatUp 3s linear forwards;
+    }
+    @keyframes floatUp{
+      0%{ transform:translateY(0) scale(1); opacity:1; }
+      100%{ transform:translateY(-100vh) scale(1.8); opacity:0; }
     }
   </style>
 </head>
@@ -68,15 +87,19 @@
     <img src="photo.jpg" alt="Petek">
 
     <p>Seni çok seviyorum.</p>
-    <p><b>seni yerim😙 </b></p>
+    <p><b>seni yerim😙</b></p>
 
     <button id="btn" onclick="playMusic()">Müziği Aç</button>
 
-    <!-- ✅ Mesaj MUTLAKA box'ın içinde olmalı -->
-    <p id="mesaj">Seni, senin beşiktaşı sevdiğinden daha çok seviyorum </p>
+    <p id="mesaj">
+      Seni, senin Beşiktaş’ı sevdiğinden daha çok seviyorum
+    </p>
 
     <audio id="music" src="song.mp3"></audio>
   </div>
+
+  <!-- ❤️ Kalpler buradan çıkacak -->
+  <div id="hearts"></div>
 
   <script>
     let ilkKez = true;
@@ -91,7 +114,25 @@
       if (ilkKez) {
         mesaj.style.display = "block";
         btn.textContent = "Müzik Açıldı ✅";
+        createHearts();
         ilkKez = false;
+      }
+    }
+
+    function createHearts(){
+      const container = document.getElementById("hearts");
+
+      for(let i=0;i<20;i++){
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = "❤️";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.fontSize = (20 + Math.random()*20) + "px";
+        heart.style.animationDelay = Math.random() + "s";
+
+        container.appendChild(heart);
+
+        setTimeout(()=>heart.remove(),3000);
       }
     }
   </script>
