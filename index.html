@@ -43,23 +43,28 @@
     <h1>Egem 🤍</h1>
     <img src="photo.jpg" alt="Petek">
     <p>Seni yerim.</p>
-    <p><b>Seni, senin beşiktaşı sevdiğinden daha çok seviyorum </b></p>
+    <p><b>Seni, senin Beşiktaş'ı sevdiğinden daha çok seviyorum</b></p>
 
     <button onclick="playMusic()">Müziği Aç</button>
+
+    <p id="mesaj" style="display:none; font-size:22px; font-weight:bold; margin-top:15px;">
+      seni yerim
+    </p>
+
     <audio id="music" src="song.mp3"></audio>
   </div>
-<p id="mesaj" style="display:none; font-size:22px; font-weight:bold; margin-top:15px;">
- seni yerim 
-</p>
-<script>
-  let ilkKez = true;
 
-  function playMusic(){
-    document.getElementById("music").play();
+  <script>
+    let ilkKez = true;
 
-    if (ilkKez) {
-      document.getElementById("mesaj").style.display = "block";
-      ilkKez = false;
+    function playMusic(){
+      document.getElementById("music").play();
+
+      if (ilkKez) {
+        document.getElementById("mesaj").style.display = "block";
+        ilkKez = false;
+      }
     }
-  }
-</script>
+  </script>
+</body>
+</html>
